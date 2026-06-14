@@ -1,0 +1,48 @@
+"""
+Trabajo practico fin
+
+Tarea detectar emociones usando la API de IBM Watson NLP.
+
+Curso Desarrollo de aplicaciones de IA con Python y Flask
+Coursera / IBM Skills Network
+"""
+
+import json
+import requests
+
+EMOTION_API_URL = (
+    "https://sn-watson-emotion.labs.skills.network/v1/watson.runtime.nlp.v1/NlpService/EmotionPredict"
+)
+
+EMOTION_API_HEADERS = {
+    "Content-Type": "application/json",
+    "grpc-metadata-mm-model-id": "emotion_aggregated-workflow_lang_en_stock",
+}
+
+def objeto_emociones():
+    return {
+        "anger": None,
+        "disgust": None,
+        "fear": None,
+        "joy": None,
+        "sadness": None,
+        "dominant_emotion": None,
+    }
+
+
+def emotion_detector(texto_a_analizar):
+    objeto_resultado = objeto_emociones()
+    if not texto_a_analizar is None and str(texto_a_analizar).strip():
+        mensaje = {"raw_document": {"text": texto_a_analizar}}
+        respuesta = requests.post(EMOTION_API_URL, json = mensaje, headers = EMOTION_API_HEADERS)
+        resultado = json.loads(respuesta.text)
+        if respuesta.status_code == 200:
+            puntajes = resultado['emotionPredictions'][0]['emotion']
+            emocion = max(puntajes, key = puntajes.get)
+            objeto_resultado["anger"] = puntajes.get('anger')
+            objeto_resultado["fear"] = puntajes.get('fear')
+            objeto_resultado["joy"] = puntajes.get('joy')
+            objeto_resultado["sadness"] = puntajes.get('sadness')
+            objeto_resultado["disgust"] = puntajes.get('disgust')
+            objeto_resultado["dominant_emotion"] = emocion
+    return objeto_resultado
