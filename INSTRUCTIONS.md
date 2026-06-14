@@ -47,3 +47,18 @@ print(emotion_detector("Odio trabajar muchas horas"))
 en despliegue
 
 Amo mi vida
+
+
+Despliegue y pruebas
+
+curl http://127.0.0.1:5000/
+
+Metodo GET
+
+curl "http://127.0.0.1:5000/emotionDetector?textToAnalyze=I am happy"
+
+Metodo POST
+
+curl -X POST http://127.0.0.1:5000/emotionDetector \
+  -H "Content-Type: application/json" \
+  -d '{"text":"I love my life"}'
