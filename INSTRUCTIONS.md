@@ -55,10 +55,11 @@ curl http://127.0.0.1:5000/
 
 Metodo GET
 
-curl "http://127.0.0.1:5000/emotionDetector?textToAnalyze=I am happy"
+curl "http://127.0.0.1:5000/emotionDetector?textToAnalyze=I%20am%20happy"
+
 
 Metodo POST
 
 curl -X POST http://127.0.0.1:5000/emotionDetector \
   -H "Content-Type: application/json" \
-  -d '{"text":"I love my life"}'
+  -d '{"textToAnalyze":"I love my life"}'
