@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, jsonify
-from EmotionDetection.emotion_detection import emotion_detector, objeto_emociones
+from flask import Flask, render_template, request
+from EmotionDetection.emotion_detection import emotion_detector
 
 app=Flask("Detector de emociones")
 app.json.sort_keys = False
@@ -15,16 +15,16 @@ def emotion_detection():
             datos_json = request.get_json()
             frase = datos_json.get("textToAnalyze")
         else:
-            frase = request.form.get('textToAnalyze', '')
+            frase = request.form['textToAnalyze']
     elif request.method == "GET":
         frase = request.args.get('textToAnalyze', '')
     else:
         return( "Error en el requerimiento", 200)
 
     respuesta = emotion_detector(frase)
-    if respuesta['dominant_emotion'] is None:
-        return "No se ha reconocido ninguna emoción! "
-    return(jsonify(respuesta), 200)
+    if respuesta['dominant_emotion'] is None or not frase:
+        return "Invalid text! Please try again."
+    return respuesta, 200
 
 if __name__ == '__main__':
     app.run(host = 'localhost', port = 5000, debug = True)
