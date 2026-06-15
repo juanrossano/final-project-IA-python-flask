@@ -10,6 +10,12 @@ o
 python3 -m pip install -r requirements.txt
 ```
 
+Ejecutar el servidor
+
+```bash
+flask --app server --debug run
+```
+
 En ingles
 
 ```python
