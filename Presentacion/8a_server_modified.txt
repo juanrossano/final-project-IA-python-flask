@@ -30,19 +30,19 @@ def emotion_detection():
             datos_json = request.get_json()
             frase = datos_json.get("textToAnalyze")
         else:
-            frase = request.form.get('textToAnalyze', '')
+            frase = request.form['textToAnalyze']
     elif request.method == "GET":
         frase = request.args.get('textToAnalyze', '')
     else:
         return( "Error en el requerimiento", 200)
 
     if not frase or not str(frase).strip():
-        return "Invalid text! Please try again!", 400
+        return "Invalid text! Please try again!"
 
     respuesta = emotion_detector(frase)
 
     if respuesta['dominant_emotion'] is None:
-        return "Invalid text! Please try again!", 400
+        return "Invalid text! Please try again!"
 
     return respuesta, 200
 
