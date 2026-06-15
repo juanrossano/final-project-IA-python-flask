@@ -37,11 +37,11 @@ def emotion_detection():
         return( "Error en el requerimiento", 200)
 
     if frase is None or not str(frase).strip():
-        return jsonify(objeto_emociones())
+        return "Invalid text! Please try again!"
 
     respuesta = emotion_detector(frase)
     if respuesta['dominant_emotion'] is None:
-        return "Invalid text! Please try again!", 400
+        return jsonify(objeto_emociones())
     return(jsonify(respuesta), 200)
 
 if __name__ == '__main__':

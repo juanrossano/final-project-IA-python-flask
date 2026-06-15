@@ -46,6 +46,8 @@ print(emotion_detector("Odio trabajar muchas horas"))
 
 en despliegue
 
+I think I am having fun
+
 Amo mi vida
 
 

@@ -1,4 +1,5 @@
-## Final Project:
+::page{title="Final Project"}
+# Final Project
 
 ### Repository
 ```
@@ -12,10 +13,6 @@ https://github.com/juanrossano/final-project-IA-python-flask/blob/TrabajoPractic
 ```
 
 ::page{title="Proyecto Final: Desarrollo y Despliegue de Aplicaciones Web Basadas en IA"}
-
-<img src="https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMSkillsNetwork-PY0224EN-Coursera/images/IDSN-logo.png" width="200"> <br>
-
-Tiempo Estimado: 1 hora 45 minutos
 
 ## Escenario
 
@@ -74,14 +71,11 @@ Como primer paso, necesitas hacer un fork de este repositorio, haz clic en el bo
 https://github.com/ibm-developer-skills-network/oaqjp-final-project-emb-ai.git
 ```
 
-
-*Puedes encontrar instrucciones sobre cómo bifurcar el repositorio visitando el ejercicio 2 en este [Laboratorio Práctico: Familiarízate con los comandos de Git](https://cf-courses-data.static.labs.skills.network/9Yqz09lYagTH_Eo5c9BXqQ/Get%20familiar%20with%20Git%20Commands-v1.md.html).*
-
 >Nota: Asegúrate de que tu repositorio bifurcado sea Público. Esta acción creará una copia del repositorio bifurcado dentro de tu cuenta de GitHub.
 1. Abre una nueva Terminal y crea el directorio `final_project` usando el comando mkdir.
 
 2. Clona este repositorio de GitHub bifurcado utilizando la terminal de Cloud IDE a tu proyecto en una carpeta llamada `final_project`.
-*Puedes encontrar instrucciones sobre cómo obtener la URL de clonación del repositorio visitando el ejercicio 3 en este [Laboratorio Práctico: Familiarízate con los comandos de Git](https://cf-courses-data.static.labs.skills.network/9Yqz09lYagTH_Eo5c9BXqQ/Get%20familiar%20with%20Git%20Commands-v1.md.html).*
+
 3. Después de que la clonación esté completa, utiliza la terminal para cambiar al directorio actual `final_project`.
 
 4. Ve a tu repositorio bifurcado y abre el README.md y agrega el nombre del proyecto en el archivo como `Final project`. Asegúrate de usar este nombre exacto, ya que es necesario para la entrega calificada por IA.

@@ -10,3 +10,11 @@ Content-Type: application/json
 {"textToAnalyze":"I love my life"}
 
 ###
+
+GET http://127.0.0.1:5000/emotionDetector?textToAnalyze=I%20think%20I%20am%20having%20fun
+
+
+POST http://127.0.0.1:5000/emotionDetector
+Content-Type: application/json
+
+{"textToAnalyze":"I think I am having fune"}
