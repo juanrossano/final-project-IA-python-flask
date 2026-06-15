@@ -47,31 +47,28 @@ def emotion_detector(texto_a_analizar):
     """
     # Return None values for empty or None input
     objeto_resultado = objeto_emociones()
-    if not texto_a_analizar is None and str(texto_a_analizar).strip():
-        mensaje = {"raw_document": {"text": texto_a_analizar}}
-        respuesta = requests.post(
-            EMOTION_API_URL,
-            json=mensaje,
-            headers=EMOTION_API_HEADERS,
-            timeout=10
-        )
-        resultado = json.loads(respuesta.text)
-        if respuesta.status_code == 200:
-            puntajes = resultado['emotionPredictions'][0]['emotion']
-            emocion = max(puntajes, key = puntajes.get)
-            objeto_resultado["anger"] = puntajes.get('anger')
-            objeto_resultado["fear"] = puntajes.get('fear')
-            objeto_resultado["joy"] = puntajes.get('joy')
-            objeto_resultado["sadness"] = puntajes.get('sadness')
-            objeto_resultado["disgust"] = puntajes.get('disgust')
-            objeto_resultado["dominant_emotion"] = emocion
-        elif respuesta.status_code == 400:
-            objeto_resultado = {
-                    'anger': None,
-                    'disgust': None,
-                    'fear': None,
-                    'joy': None,
-                    'sadness': None,
-                   'dominant_emotion': None
-        }
+    if texto_a_analizar is None or not str(texto_a_analizar).strip():
+        return objeto_resultado
+
+    mensaje = {"raw_document": {"text": texto_a_analizar}}
+    respuesta = requests.post(
+        EMOTION_API_URL,
+        json=mensaje,
+        headers=EMOTION_API_HEADERS,
+        timeout=10,
+    )
+    resultado = json.loads(respuesta.text)
+
+    if respuesta.status_code == 200:
+        puntajes = resultado['emotionPredictions'][0]['emotion']
+        emocion = max(puntajes, key=puntajes.get)
+        objeto_resultado["anger"] = puntajes.get('anger')
+        objeto_resultado["fear"] = puntajes.get('fear')
+        objeto_resultado["joy"] = puntajes.get('joy')
+        objeto_resultado["sadness"] = puntajes.get('sadness')
+        objeto_resultado["disgust"] = puntajes.get('disgust')
+        objeto_resultado["dominant_emotion"] = emocion
+    elif respuesta.status_code == 400:
+        return objeto_resultado
+
     return objeto_resultado

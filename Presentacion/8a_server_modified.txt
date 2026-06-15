@@ -3,8 +3,8 @@ Servidor Flask para aplicacion de deteccion de emociones
 
 Trabajo practico
 """
-from flask import Flask, render_template, request, jsonify
-from EmotionDetection.emotion_detection import emotion_detector, objeto_emociones
+from flask import Flask, render_template, request
+from EmotionDetection.emotion_detection import emotion_detector
 
 app=Flask("Detector de emociones")
 app.json.sort_keys = False
@@ -36,13 +36,15 @@ def emotion_detection():
     else:
         return( "Error en el requerimiento", 200)
 
-    if frase is None or not str(frase).strip():
-        return jsonify(objeto_emociones())
+    if not frase or not str(frase).strip():
+        return "Invalid text! Please try again!", 400
 
     respuesta = emotion_detector(frase)
+
     if respuesta['dominant_emotion'] is None:
         return "Invalid text! Please try again!", 400
-    return(jsonify(respuesta), 200)
+
+    return respuesta, 200
 
 if __name__ == '__main__':
     app.run(host = 'localhost', port = 5000, debug = True)

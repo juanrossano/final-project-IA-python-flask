@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from EmotionDetection.emotion_detection import emotion_detector
+from EmotionDetection.emotion_detection import emotion_detector, objeto_emociones
 
 app=Flask("Detector de emociones")
 app.json.sort_keys = False
